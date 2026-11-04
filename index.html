@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jaelyn Lee</title>
+<style>
+  :root{
+    --cbs-blue: #003A70;      /* Columbia Business School blue */
+    --cbs-blue-dark: #00264d;
+    --cbs-blue-light: #E8F0F8;
+    --accent: #6CACE4;        /* lighter supporting blue */
+    --ink: #1a1a1a;
+    --muted: #5b6672;
+    --bg: #ffffff;
+    --card-bg: #ffffff;
+    --border: #e2e8f0;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:"Segoe UI", system-ui, -apple-system, Arial, sans-serif;
+    color:var(--ink);
+    background:var(--bg);
+    line-height:1.55;
+  }
+  a{color:inherit;}
+  img{max-width:100%;}
+
+  /* NAV */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:var(--cbs-blue);
+    color:#fff;
+  }
+  .nav-wrap{
+    max-width:1100px; margin:0 auto; padding:14px 24px;
+    display:flex; align-items:center; justify-content:space-between;
+    flex-wrap:wrap; gap:10px;
+  }
+  .brand{font-weight:700; font-size:1.1rem; letter-spacing:.02em; text-decoration:none; color:#fff;}
+  nav ul{list-style:none; display:flex; gap:22px; margin:0; padding:0; flex-wrap:wrap;}
+  nav a{text-decoration:none; color:#dce8f5; font-size:.92rem; font-weight:500; transition:color .15s;}
+  nav a:hover{color:#fff;}
+
+  /* HERO */
+  .hero{
+    background:linear-gradient(135deg, var(--cbs-blue) 0%, var(--cbs-blue-dark) 100%);
+    color:#fff;
+    padding:64px 24px 56px;
+  }
+  .hero-inner{
+    max-width:1100px; margin:0 auto;
+    display:flex; align-items:center; gap:40px; flex-wrap:wrap;
+  }
+  .hero-photo{
+    width:150px; height:150px; border-radius:50%;
+    object-fit:cover; border:4px solid rgba(255,255,255,.35);
+    flex-shrink:0;
+  }
+  .hero-text h1{margin:0 0 6px; font-size:2.1rem;}
+  .hero-text p.tagline{margin:0 0 14px; color:var(--accent); font-weight:600; font-size:1.05rem;}
+  .hero-text p.sub{margin:0 0 18px; color:#dce8f5; max-width:600px;}
+  .hero-links{display:flex; gap:12px; flex-wrap:wrap;}
+  .btn{
+    display:inline-flex; align-items:center; gap:6px;
+    padding:9px 18px; border-radius:6px; font-size:.9rem; font-weight:600;
+    text-decoration:none; border:1.5px solid rgba(255,255,255,.6);
+    color:#fff; transition:background .15s, color .15s;
+  }
+  .btn:hover{background:#fff; color:var(--cbs-blue);}
+  .btn.solid{background:#fff; color:var(--cbs-blue);}
+  .btn.solid:hover{background:var(--accent); color:#fff; border-color:var(--accent);}
+
+  main{max-width:1100px; margin:0 auto; padding:0 24px;}
+  section{padding:56px 0;}
+  section + section{border-top:1px solid var(--border);}
+  h2.section-title{
+    font-size:1.5rem; color:var(--cbs-blue); margin:0 0 6px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .section-sub{color:var(--muted); margin:0 0 30px; font-size:.95rem;}
+
+  /* EDUCATION */
+  .edu-grid{display:grid; grid-template-columns:1fr 1fr; gap:20px;}
+  .card{
+    background:var(--cbs-blue-light); border:1px solid var(--border);
+    border-left:4px solid var(--cbs-blue);
+    border-radius:8px; padding:20px 22px;
+  }
+  .card h3{margin:0 0 4px; font-size:1.05rem; color:var(--cbs-blue-dark);}
+  .card .meta{font-size:.85rem; color:var(--muted); margin-bottom:8px; font-weight:600;}
+  .card p{margin:4px 0; font-size:.92rem;}
+  .badge-row{display:flex; flex-wrap:wrap; gap:6px; margin-top:10px;}
+  .badge{
+    background:#fff; border:1px solid var(--accent); color:var(--cbs-blue-dark);
+    font-size:.75rem; padding:3px 10px; border-radius:999px; font-weight:600;
+  }
+
+  /* EXPERIENCE TIMELINE */
+  .exp-item{
+    display:grid; grid-template-columns:150px 1fr; gap:22px;
+    padding:22px 0; border-bottom:1px solid var(--border);
+  }
+  .exp-item:last-child{border-bottom:none;}
+  .exp-date{color:var(--cbs-blue); font-weight:700; font-size:.88rem; white-space:nowrap;}
+  .exp-role h3{margin:0; font-size:1.08rem; color:var(--ink);}
+  .exp-role .company{color:var(--cbs-blue); font-weight:600; font-size:.92rem; margin-bottom:10px;}
+  .exp-role .subhead{font-weight:700; font-size:.85rem; color:var(--muted); margin:14px 0 6px; text-transform:uppercase; letter-spacing:.03em;}
+  .exp-role ul{margin:6px 0 0; padding-left:20px;}
+  .exp-role li{margin-bottom:6px; font-size:.93rem;}
+
+  /* RECRUITING TILE SECTIONS */
+  .recruit-section{
+    background:var(--cbs-blue-light);
+  }
+  .recruit-header{display:flex; align-items:center; gap:12px; margin-bottom:6px;}
+  .pill{
+    display:inline-block; background:var(--cbs-blue); color:#fff;
+    font-size:.72rem; font-weight:700; letter-spacing:.04em; text-transform:uppercase;
+    padding:4px 12px; border-radius:999px;
+  }
+  .tile-grid{display:grid; grid-template-columns:repeat(2, 1fr); gap:18px; margin-top:24px;}
+  .tile{
+    background:#fff; border:1px solid var(--border); border-radius:10px;
+    padding:22px; box-shadow:0 1px 3px rgba(0,0,0,.04);
+    transition:transform .15s, box-shadow .15s;
+  }
+  .tile:hover{transform:translateY(-2px); box-shadow:0 6px 16px rgba(0,58,112,.1);}
+  .tile h4{margin:0 0 4px; color:var(--cbs-blue-dark); font-size:1rem;}
+  .tile .tile-meta{font-size:.8rem; color:var(--muted); font-weight:600; margin-bottom:10px;}
+  .tile ul{margin:0; padding-left:18px;}
+  .tile li{font-size:.88rem; margin-bottom:5px;}
+
+  /* ADDITIONAL */
+  .additional-grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:16px;}
+  .mini-card{
+    background:#fff; border:1px solid var(--border); border-radius:8px;
+    padding:16px 18px; font-size:.9rem;
+  }
+
+  footer{
+    background:var(--cbs-blue-dark); color:#cdd8e4;
+    text-align:center; padding:30px 24px; font-size:.85rem;
+  }
+  footer a{color:#fff; text-decoration:underline;}
+
+  @media (max-width: 760px){
+    .edu-grid, .tile-grid, .additional-grid{grid-template-columns:1fr;}
+    .exp-item{grid-template-columns:1fr; gap:4px;}
+    .hero-inner{flex-direction:column; text-align:center;}
+    .hero-links{justify-content:center;}
+    nav ul{gap:14px;}
+    .nav-wrap{flex-direction:column; align-items:flex-start;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-wrap">
+    <a class="brand" href="#top">Jaelyn Lee</a>
+    <nav>
+      <ul>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#ai-startups">AI Startups</a></li>
+        <li><a href="#private-equity">Private Equity</a></li>
+        <li><a href="#additional">More</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<div id="top" class="hero">
+  <div class="hero-inner">
+    <img class="hero-photo" src="photo.jpg.jpg" alt="Jaelyn Lee">
+    <div class="hero-text">
+      <h1>Jaelyn Lee <span style="font-weight:400; color:#dce8f5;">(Jia Lin)</span></h1>
+      <p class="tagline">MBA Candidate, London Business School &middot; Ex-BCG Consultant</p>
+      <p class="sub">Builder across private equity, venture, and AI operations &mdash; grounded in a
+        strategy consulting background. Currently recruiting for AI startup and private equity roles.</p>
+      <div class="hero-links">
+        <a class="btn solid" href="resume.pdf.pdf" target="_blank" rel="noopener">View CV (PDF)</a>
+        <a class="btn" href="https://www.linkedin.com/in/jaelyn-lee-776aa0141/" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn" href="https://github.com/jialinlee" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <h2 class="section-title">Education</h2>
+    <p class="section-sub">Degrees, scores, and certifications.</p>
+    <div class="edu-grid">
+      <div class="card">
+        <h3>London Business School, United Kingdom</h3>
+        <div class="meta">2025 &ndash; 2027</div>
+        <p>Master of Business Administration</p>
+        <p>GMAT (Focus Edition) Score: 695 (97th percentile) &ndash; equivalent to 740&ndash;750 in the GMAT 10th Edition</p>
+      </div>
+      <div class="card">
+        <h3>Singapore Management University, Singapore</h3>
+        <div class="meta">2017 &ndash; 2021</div>
+        <p>Bachelor of Accountancy, 2nd Major in Finance (Specialized in Analytics)</p>
+        <p>Awards: Summa Cum Laude (Highest Distinction), Global Impact Scholarship Award</p>
+        <div class="badge-row">
+          <span class="badge">CFA Level 1</span>
+          <span class="badge">WILEY Certified Data Analyst</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BUSINESS EXPERIENCE -->
+  <section id="experience">
+    <h2 class="section-title">Business Experience</h2>
+    <p class="section-sub">Full career history, most recent first.</p>
+
+    <div class="exp-item">
+      <div class="exp-date">2026</div>
+      <div class="exp-role">
+        <h3>Private Equity Summer Associate</h3>
+        <div class="company">Bridgehill Partners, United Kingdom</div>
+        <ul>
+          <li>Developed the APAC growth strategy for a data center infrastructure services portfolio company, defining the required in-region functions, GTM motion and sales coverage to support accelerated growth</li>
+          <li>Evaluated prospective bolt-on acquisition opportunities in the sound attenuation space &ndash; including a commercial due diligence for an onshore power operator, drafting an indicative Heads of Terms covering the target deal structure and management incentives / earn-out plan</li>
+          <li>Led the PMO for a portfolio company's CRM implementation, migrating manual sales data into a centralized platform by redesigning user journeys, database architecture and management dashboard</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-date">2026</div>
+      <div class="exp-role">
+        <h3>Special Projects Associate</h3>
+        <div class="company">Ethos AI, United Kingdom</div>
+        <ul>
+          <li>Own daily KPI for training data quality assurance (e.g., review accuracy and throughput), escalating at-risk workstreams to hold output quality consistent across a 10,000 data expert workforce</li>
+          <li>Built the training playbook and onboarding program for new QA leads, codifying review standards, worked examples and benchmark rubrics to ramp hires to independent sign-off</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-date">2025 &ndash; 2026</div>
+      <div class="exp-role">
+        <h3>Venture Capital Investor (Fellowship)</h3>
+        <div class="company">Wild Tree Ventures, United States (Remote)</div>
+        <ul>
+          <li>Spearheaded independent deal sourcing across pre-seed to Series A startups addressing demographic-driven challenges (e.g., healthcare, climate) by being the primary point of contact with founders, prioritizing high-conviction opportunities, and directly advancing deals to general partners (GPs)</li>
+          <li>Supported end-to-end due diligence alongside GPs through market assessment, customer discovery, and financial evaluation, translating into investment memos for investment committee meetings</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-date">2025</div>
+      <div class="exp-role">
+        <h3>Consultant</h3>
+        <div class="company">Boston Consulting Group (BCG), Singapore</div>
+
+        <div class="subhead">Investment &amp; Business Case Development</div>
+        <ul>
+          <li>Built a bottom-up investment business case to establish a regional tech delivery centre for a regional bank, sizing the migration population through role-level activity mapping, utilization analysis, and cost-to-serve benchmarking, supporting a ~$50Mn 5-year revenue uplift</li>
+          <li>Conducted organizational rightsizing for a telco's enterprise sales team by analysing account coverage economics and sales productivity, resulting in a 25&ndash;30% workforce simplification target</li>
+        </ul>
+
+        <div class="subhead">Value Creation &amp; Business Transformation</div>
+        <ul>
+          <li>Designed a fixed broadband enterprise product portfolio for an Indonesian telco, using competitive benchmarking to optimize pricing tiers, package specifications, and bundling strategies</li>
+          <li>Launched sales excellence and churn reduction programs across 350+ sub-districts for an Indonesian telco, deploying GTM tools, dashboard, and scorecards to facilitate data-driven strategy decisions; achieved a 2&ndash;3% sales revenue uplift and 10% churn reduction over 6 months</li>
+        </ul>
+
+        <div class="subhead">Corporate Strategy &amp; Planning</div>
+        <ul>
+          <li>Partnered with C-suite executives to design the strategic vision and execution roadmap for an integrated wealth model for a regional bank, driving alignment on transformation priorities</li>
+          <li>Formulated a 20-year vision and strategy for an ASEAN economic organization, covering topics on integrated value chains, US-China disputes, and the Middle East as a rising economy</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- AI STARTUP RECRUITING -->
+  <section id="ai-startups" class="recruit-section">
+    <div class="recruit-header">
+      <span class="pill">Recruiting</span>
+    </div>
+    <h2 class="section-title">AI Startup Recruiting</h2>
+    <p class="section-sub">Why I'm a fit for operating / strategy roles at AI startups.</p>
+    <div class="tile-grid">
+      <div class="tile">
+        <h4>AI Operations &amp; Data Quality</h4>
+        <div class="tile-meta">Ethos AI &middot; Special Projects Associate</div>
+        <ul>
+          <li>Owned daily KPIs for training data quality assurance across a 10,000-person data expert workforce</li>
+          <li>Built onboarding and QA playbooks that scaled review consistency across hires</li>
+        </ul>
+      </div>
+      <div class="tile">
+        <h4>Early-Stage Investing Lens</h4>
+        <div class="tile-meta">Wild Tree Ventures &middot; VC Investor (Fellowship)</div>
+        <ul>
+          <li>Sourced and evaluated pre-seed to Series A startups directly with founders</li>
+          <li>Ran due diligence &mdash; market sizing, customer discovery, financial evaluation &mdash; into IC-ready memos</li>
+        </ul>
+      </div>
+      <div class="tile">
+        <h4>Systems &amp; Tooling</h4>
+        <div class="tile-meta">BCG &amp; Bridgehill Partners</div>
+        <ul>
+          <li>Led CRM implementation PMO: redesigned user journeys, database architecture, and dashboards</li>
+          <li>Deployed GTM tools and scorecards that drove measurable revenue and churn results</li>
+        </ul>
+      </div>
+      <div class="tile">
+        <h4>Technical Grounding</h4>
+        <div class="tile-meta">Education &amp; certifications</div>
+        <ul>
+          <li>WILEY Certified Data Analyst</li>
+          <li>Bachelor of Accountancy with 2nd major in Finance, specialized in Analytics</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRIVATE EQUITY RECRUITING -->
+  <section id="private-equity">
+    <div class="recruit-header">
+      <span class="pill">Recruiting</span>
+    </div>
+    <h2 class="section-title">Private Equity Recruiting</h2>
+    <p class="section-sub">Why I'm a fit for PE investing and value-creation roles.</p>
+    <div class="tile-grid">
+      <div class="tile">
+        <h4>Portfolio Value Creation</h4>
+        <div class="tile-meta">Bridgehill Partners &middot; PE Summer Associate</div>
+        <ul>
+          <li>Developed APAC growth strategy for a data center infrastructure portfolio company</li>
+          <li>Led PMO for a portfolio company's CRM implementation end to end</li>
+        </ul>
+      </div>
+      <div class="tile">
+        <h4>Deal Evaluation &amp; Diligence</h4>
+        <div class="tile-meta">Bridgehill Partners</div>
+        <ul>
+          <li>Evaluated bolt-on acquisition targets in the sound attenuation space</li>
+          <li>Ran commercial due diligence on an onshore power operator; drafted indicative Heads of Terms, deal structure, and management earn-out plan</li>
+        </ul>
+      </div>
+      <div class="tile">
+        <h4>Investment Case Building</h4>
+        <div class="tile-meta">BCG &middot; Investment &amp; Business Case Development</div>
+        <ul>
+          <li>Built a bottom-up investment case for a regional bank, supporting a ~$50Mn 5-year revenue uplift</li>
+          <li>Led organizational rightsizing analysis resulting in a 25&ndash;30% workforce simplification target</li>
+        </ul>
+      </div>
+      <div class="tile">
+        <h4>Finance Foundations</h4>
+        <div class="tile-meta">Education &amp; certifications</div>
+        <ul>
+          <li>CFA Level 1</li>
+          <li>Bachelor of Accountancy, 2nd Major in Finance &ndash; Summa Cum Laude</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ADDITIONAL INFORMATION -->
+  <section id="additional">
+    <h2 class="section-title">Additional Information</h2>
+    <div class="additional-grid">
+      <div class="mini-card">Fluent in Mandarin and English</div>
+      <div class="mini-card">Eligible for H1B1 visa in the US &ndash; exempt from the US$100K payment</div>
+      <div class="mini-card">Mentored student consulting teams delivering pro bono projects on senior education redesign, bursary program benchmarking, and other community-focused initiatives</div>
+    </div>
+  </section>
+
+</main>
+
+<footer id="contact">
+  <p>Jaelyn Lee (Jia Lin) &middot; <a href="mailto:jlee.mba2027@london.edu">jlee.mba2027@london.edu</a> &middot; +1 971 846 8676 &middot; <a href="https://www.linkedin.com/in/jaelyn-lee-776aa0141/" target="_blank" rel="noopener">LinkedIn</a> &middot; <a href="https://github.com/jialinlee" target="_blank" rel="noopener">GitHub</a></p>
+</footer>
+
+</body>
+</html>
